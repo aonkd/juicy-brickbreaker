@@ -21,6 +21,7 @@ func _ready():
 	
 
 func _on_Ball_body_entered(body):
+	$highlight.modulate.a = 1
 	if body.has_method("hit"):
 		body.hit(self)
 		accelerate = true	
@@ -31,6 +32,8 @@ func _input(event):
 		released = true
 
 func _integrate_forces(state):
+	if $highlight.modulate.a > 0:
+		$highlight.modulate.a -= 0.05
 	if not released:
 		var paddle = get_node_or_null("/root/Game/Paddle_Container/Paddle")
 		if paddle != null:

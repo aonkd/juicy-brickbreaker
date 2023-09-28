@@ -12,6 +12,8 @@ func _ready():
 	target = Vector2(Global.VP.x / 2, Global.VP.y - 80)
 
 func _physics_process(_delta):
+	if $highlight.modulate.a > 0:
+		$highlight.modulate.a -= 0.05
 	target.x = clamp(target.x, width/2, Global.VP.x - width/2)
 	position = target
 	for c in $Powerups.get_children():
@@ -22,6 +24,8 @@ func _input(event):
 		target.x += event.relative.x
 
 func hit(_ball):
+	$highlight.modulate.a = 1
+	$confetti.emitting = true
 	pass
 
 func powerup(payload):

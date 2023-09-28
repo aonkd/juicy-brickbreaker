@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://ei3ny6s8bla5"]
+[gd_scene load_steps=3 format=3 uid="uid://ei3ny6s8bla5"]
 
 [ext_resource type="Script" path="res://UI/Main_Menu.gd" id="1"]
+[ext_resource type="Theme" uid="uid://4b5f7uwskr65" path="res://UI/UI.tres" id="1_fqno2"]
 
 [node name="Main_Menu" type="Control"]
 layout_mode = 3
@@ -9,6 +10,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_fqno2")
 script = ExtResource("1")
 
 [node name="Background" type="ColorRect" parent="."]
@@ -22,6 +24,7 @@ layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_bottom = -248.0
+theme_override_font_sizes/font_size = 70
 text = "Brick Breaker"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -39,7 +42,7 @@ offset_right = 100.0
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Play"
+text = "PLAY"
 
 [node name="Quit" type="Button" parent="."]
 layout_mode = 1
@@ -54,7 +57,7 @@ offset_right = 100.0
 offset_bottom = 80.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Quit"
+text = "QUIT"
 
 [connection signal="pressed" from="Play" to="." method="_on_Play_pressed"]
 [connection signal="pressed" from="Quit" to="." method="_on_Quit_pressed"]

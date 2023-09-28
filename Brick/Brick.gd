@@ -9,15 +9,32 @@ var powerup_prob = 0.1
 func _ready():
 	randomize()
 	position = new_position
+	if score >=100:
+		$ColorRect.color = Color8(224,49,49,255)
+	elif score >=90:
+		$ColorRect.color = Color8(253,126,20,255)
+	elif score >=80:
+		$ColorRect.color = Color8(255,212,59,255)
+	elif score >=70:
+		$ColorRect.color = Color8(148,216,45,255)
+	elif score >= 60:
+		$ColorRect.color = Color8(34,139,230,255)
+	elif score >= 50:
+		$ColorRect.color = Color8(132,94,247,255)
+	elif score >= 40:
+		$ColorRect.color = Color8(190,75,219,255)
+	else:
+		$ColorRect.color = Color8(134,142,150,255)
 
 func _physics_process(_delta):
-	if dying:
+	if dying and not $confetti.emitting:
 		queue_free()
 
 func hit(_ball):
 	die()
 
 func die():
+	$confetti.emitting = true
 	dying = true
 	collision_layer = 0
 	$ColorRect.hide()

@@ -1,0 +1,62 @@
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://4b5f7uwskr65"]
+
+[ext_resource type="FontFile" uid="uid://cvwrfwa8i0egj" path="res://Assets/Inversionz Unboxed.ttf" id="1_8a8n5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xu4m7"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 4
+border_width_top = 2
+border_width_right = 4
+border_width_bottom = 7
+border_color = Color(0.211765, 0.211765, 0.211765, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_clwfc"]
+bg_color = Color(0.568627, 0.568627, 0.568627, 1)
+border_width_left = 4
+border_width_top = 2
+border_width_right = 4
+border_width_bottom = 7
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+expand_margin_left = 5.0
+expand_margin_right = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oxxll"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 4
+border_width_top = 2
+border_width_right = 4
+border_width_bottom = 7
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2jhln"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 4
+border_width_top = 2
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[resource]
+default_font = ExtResource("1_8a8n5")
+default_font_size = 50
+Button/styles/disabled = SubResource("StyleBoxFlat_xu4m7")
+Button/styles/focus = SubResource("StyleBoxFlat_clwfc")
+Button/styles/hover = SubResource("StyleBoxFlat_clwfc")
+Button/styles/normal = SubResource("StyleBoxFlat_oxxll")
+Button/styles/pressed = SubResource("StyleBoxFlat_2jhln")
