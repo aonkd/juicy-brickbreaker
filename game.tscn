@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bd5m3yq1k5fx8"]
+[gd_scene load_steps=18 format=3 uid="uid://bd5m3yq1k5fx8"]
 
 [ext_resource type="Script" path="res://Brick/Brick_Container.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://dmwf8wjdir6y5" path="res://Paddle/Paddle.tscn" id="2"]
@@ -10,6 +10,24 @@
 [ext_resource type="PackedScene" uid="uid://r1nm10jeqyta" path="res://UI/Instructions.tscn" id="8"]
 [ext_resource type="Script" path="res://Effects/Fever.gd" id="9"]
 [ext_resource type="Script" path="res://UI/Camera.gd" id="10_75ocr"]
+[ext_resource type="AudioStream" uid="uid://dggx7e1y6yhfg" path="res://Assets/juicy music.wav" id="11_f34p8"]
+[ext_resource type="AudioStream" uid="uid://bj315kkxl2apd" path="res://Assets/nice.wav" id="13_ym00s"]
+[ext_resource type="AudioStream" uid="uid://deyiy52usuk1" path="res://Assets/brick.wav" id="14_aaqpb"]
+[ext_resource type="AudioStream" uid="uid://cx3kbhh0qrkc" path="res://Assets/die.wav" id="15_x560h"]
+
+[sub_resource type="GDScript" id="GDScript_2pyx6"]
+script/source = "extends Node2D
+
+
+func _physics_process(_delta):
+	for c in get_children():
+		if c.modulate.a <= 0 or c.modulate.v <= 0:
+			c.queue_free()
+		c.scale *= 0.99
+		c.modulate.a -= 0.03
+		c.modulate.v -= 0.01
+		c.modulate.h += 0.02
+"
 
 [sub_resource type="RectangleShape2D" id="1"]
 size = Vector2(200, 1000)
@@ -19,6 +37,9 @@ size = Vector2(1224, 200)
 
 [node name="Game" type="Node2D"]
 script = ExtResource("4")
+
+[node name="Comet_Container" type="Node2D" parent="."]
+script = SubResource("GDScript_2pyx6")
 
 [node name="Wall_Container" type="Node2D" parent="."]
 
@@ -82,5 +103,22 @@ visible = false
 [node name="Camera" type="Camera2D" parent="."]
 anchor_mode = 0
 script = ExtResource("10_75ocr")
+
+[node name="Music" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("11_f34p8")
+autoplay = true
+
+[node name="Wall_Sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("14_aaqpb")
+
+[node name="Paddle_Sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("13_ym00s")
+
+[node name="Brick_Sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("14_aaqpb")
+pitch_scale = 3.0
+
+[node name="Die_Sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("15_x560h")
 
 [connection signal="timeout" from="Fever/Timer" to="Fever" method="_on_Timer_timeout"]

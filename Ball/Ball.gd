@@ -22,6 +22,8 @@ var tween
 
 var distort_effect = 0.03
 
+var h_rotate = 0.0
+
 func _ready():
 	contact_monitor = true
 	max_contacts_reported = 8
@@ -43,10 +45,6 @@ func _on_Ball_body_entered(body):
 	tween = create_tween().set_parallel(true)
 	$Images/Highlight.modulate.a = 1.0
 	tween.tween_property($Images/Highlight, "modulate:a", 0, time_highlight).set_trans(Tween.TRANS_LINEAR)
-	$Images/Highlight.scale = Vector2(2.0,2.0)
-	tween.tween_property($Images/Highlight, "scale", Vector2(1.0,1.0),time_highlight_size).set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_IN)
-	wobble_direction = linear_velocity.orthogonal().normalized()
-	wobble_amplitude = wobble_max
 
 func _input(event):
 	if not released and event.is_action_pressed("release"):
@@ -73,10 +71,6 @@ func _integrate_forces(state):
 	if state.linear_velocity.length() > max_speed * speed_multiplier:
 		state.linear_velocity = state.linear_velocity.normalized() * max_speed * speed_multiplier
 
-func change_size(s):
-	$Images/ColorRect.scale = s
-	$CollisionShape2D.scale = s
-
 func change_speed(s):
 	speed_multiplier = s
 
@@ -93,4 +87,7 @@ func distort():
 	$Images.scale = direction
 
 func die():
+	var die_sound = get_node_or_null("/root/Game/Die_Sound")
+	if die_sound != null:
+		die_sound.play()
 	queue_free()

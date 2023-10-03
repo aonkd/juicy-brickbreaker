@@ -10,6 +10,7 @@ var time_a = 0.8
 var time_s = 1.2
 var time_v = 1.5
 var tween
+var powerup_prob = 0.1
 
 func _ready():
 	process_mode = Node.PROCESS_MODE_ALWAYS
@@ -43,6 +44,19 @@ func hit(_ball):
 
 func die():
 	dying = true
+	collision_layer = 0
+	$ColorRect.hide()
+	Global.update_score(score)
+	if not Global.feverish:
+		Global.update_fever(score)
+	get_parent().check_level()
+	if randf() < powerup_prob:
+		var Powerup_Container = get_node_or_null("/root/Game/Powerup_Container")
+		if Powerup_Container != null:
+			var Powerup = load("res://Powerups/Powerup.tscn")
+			var powerup = Powerup.instantiate()
+			powerup.position = position
+			Powerup_Container.call_deferred("add_child", powerup)
 	$CollisionShape2D.queue_free()
 	Global.update_score(score)
 	get_parent().check_level()
@@ -55,3 +69,6 @@ func die():
 	tween.tween_property($ColorRect, "color:a", 0, time_a)
 	tween.tween_property($ColorRect, "color:s", 0, time_s)
 	tween.tween_property($ColorRect, "color:v", 0, time_v)
+	var brick_sound = get_node_or_null("/root/Game/Brick_Sound")
+	if brick_sound != null:
+		brick_sound.play()
