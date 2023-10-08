@@ -15,7 +15,7 @@ Added personalized UI.
 Particles added for ball striking paddle and ball striking bricks.
 Rotation and opacity tweening added to bricks.
 Original sound added for ball striking paddle, ball striking brick, ball striking wall, and player death.
-Orignial music loop added.
+Orignial music loop added. Added tracking eyes to paddle.
 
 ## References
 
